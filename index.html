@@ -1,99 +1,65 @@
-<!DOCTYPE html>
-    <html>
-      <head>
-        <meta name="wievport" content="width=device-width, initial-scale=1.0" />
-        <title>Calculator</title>
-        <link rel="stylesheet" href="style.css" />
-      </head>
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator Modern</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-      <body>
-        <div class="container">
-          <div class="calculator">
-            <form>
-              <div class="display">
-                <input type="text" name="display" />
-              </div>
-              <div>
-                <input
-                  type="button"
-                  value="AC"
-                  onclick="display.value = '' "
-                  class="operator"
-                />
-                <input
-                  type="button"
-                  value="DE"
-                  onclick="display.value = display.value.toString().slice(0,-1)"
-                  class="operator"
-                />
-                <input
-                  type="button"
-                  value="."
-                  onclick="display.value+= '.' "
-                  class="operator"
-                />
-                <input
-                  type="button"
-                  value="/"
-                  onclick="display.value+= '/' "
-                  class="operator"
-                />
-              </div>
-              <div>
-                <input type="button" value="7" onclick="display.value+= '7' " />
-                <input type="button" value="8" onclick="display.value+= '8' " />
-                <input type="button" value="9" onclick="display.value+= '9' " />
-                <input
-                  type="button"
-                  value="*"
-                  onclick="display.value += '*' "
-                  class="operator"
-                />
-              </div>
-              <div>
-                <input type="button" value="4" onclick="display.value+= '4' " />
-                <input type="button" value="5" onclick="display.value+= '5' " />
-                <input type="button" value="6" onclick="display.value+= '6' " />
-                <input
-                  type="button"
-                  value="-"
-                  onclick="display.value += '-' "
-                  class="operator"
-                />
-              </div>
-              <div>
-                <input type="button" value="1" onclick="display.value+= '1' " />
-                <input type="button" value="2" onclick="display.value+= '2' " />
-                <input type="button" value="3" onclick="display.value+= '3' " />
-                <input
-                  type="button"
-                  value="+"
-                  onclick="display.value += '+' "
-                  class="operator"
-                />
-              </div>
-              <div>
-                <input
-                  type="button"
-                  value="00"
-                  onclick="display.value += '00' "
-                />
-                <input
-                  type="button"
-                  value="0"
-                  onclick="display.value += '0' "
-                />
-                <input
-                  type="button"
-                  value="="
-                  onclick="display.value = eval(display.value)"
-                  class="equal operator"
-                />
-              </div>
-            </form>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <form name="calcForm" onsubmit="event.preventDefault()">
+          <!-- Ecranul calculatorului format din istoric și afișajul principal -->
+          <div class="display-container">
+            <div id="history" class="history-display"></div>
+            <input type="text" id="calcDisplay" placeholder="0" readonly />
           </div>
-        </div>
-      </body>
-    </html>
+
+          <!-- Rândul 1 de butoane -->
+          <div class="row">
+            <button type="button" class="btn operator" data-action="clear">AC</button>
+            <button type="button" class="btn operator" data-action="delete">DE</button>
+            <button type="button" class="btn operator" data-action="append" data-value=".">.</button>
+            <button type="button" class="btn operator" data-action="append" data-value="/">÷</button>
+          </div>
+
+          <!-- Rândul 2 de butoane -->
+          <div class="row">
+            <button type="button" class="btn" data-action="number">7</button>
+            <button type="button" class="btn" data-action="number">8</button>
+            <button type="button" class="btn" data-action="number">9</button>
+            <button type="button" class="btn operator" data-action="append" data-value="*">×</button>
+          </div>
+
+          <!-- Rândul 3 de butoane -->
+          <div class="row">
+            <button type="button" class="btn" data-action="number">4</button>
+            <button type="button" class="btn" data-action="number">5</button>
+            <button type="button" class="btn" data-action="number">6</button>
+            <button type="button" class="btn operator" data-action="append" data-value="-">-</button>
+          </div>
+
+          <!-- Rândul 4 de butoane -->
+          <div class="row">
+            <button type="button" class="btn" data-action="number">1</button>
+            <button type="button" class="btn" data-action="number">2</button>
+            <button type="button" class="btn" data-action="number">3</button>
+            <button type="button" class="btn operator" data-action="append" data-value="+">+</button>
+          </div>
+
+          <!-- Rândul 5 de butoane -->
+          <div class="row">
+            <button type="button" class="btn" data-action="number">00</button>
+            <button type="button" class="btn" data-action="number">0</button>
+            <button type="button" class="btn equal" data-action="calculate">=</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Conectăm fișierul JavaScript extern la finalul body-ului -->
+    <script src="script.js"></script>
   </body>
 </html>

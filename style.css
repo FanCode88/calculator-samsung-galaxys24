@@ -1,66 +1,127 @@
-*{
-    margin:0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    box-sizing: border-box;
+:root {
+  --bg-color: #0f172a;
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --accent-color: #38bdf8;
+  --text-white: #f8fafc;
+  --text-muted: #94a3b8;
 }
 
 body {
-    background: rgb(241, 241, 182);
+  background: radial-gradient(circle at top left, #1e293b, #0f172a);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
 }
 
-.container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Containerul principal al calculatorului */
+.calculator {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* Suport suplimentar pentru Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  width: 300px; /* Lățime fixă pentru a păstra aspectul compact */
 }
 
-.calculator{
-    background: #131720;
-    padding: 30px;
-    border-radius: 40px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
+/* Ecranul modern compus din istoric și afișajul principal */
+.display-container {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.calculator form input{
-    border: 0;
-    outline: 0;
-    width: 60px;
-    height: 60px;
-    border-radius: 50px;
-    box-shadow: -8px -8px 15px rgba(255,255,255,0.1), 5px 5px 15px rgba(0,0,0,0.2);
-    background: transparent;
-    font-size: 25px;
-    color:#fff;
-    cursor: pointer;
-    margin: 10px;
-
+.history-display {
+  color: var(--text-muted);
+  font-size: 14px;
+  min-height: 20px; /* Previne mișcarea layout-ului când este gol */
+  word-break: break-all;
+  text-align: right;
 }
 
-form .display{
-    display:flex;
-    justify-content: flex-end;
-    margin: 20px 0;
+#calcDisplay {
+  background: transparent;
+  border: none;
+  color: var(--text-white);
+  font-size: 36px;
+  text-align: right;
+  width: 100%;
+  outline: none;
+  padding: 0;
+  margin-top: 5px;
 }
 
-form .display input{
-    text-align: right;
-    flex: 1;
-    font-size: 45px;
-    box-shadow: none;
-    background-color: #151f30;
+/* Rândurile de butoane (aliniază butoanele pe orizontală) */
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-form input.equal{
-    width: 145px;
-
+.row:last-child {
+  margin-bottom: 0; /* Scoate marginea de jos la ultimul rând */
 }
 
-form input.operator{
-    color: orange;
+/* Stilul modern pentru butoane (fostele tale input[type="button"]) */
+.btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-white);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Operatori special colorați */
+.operator {
+  color: var(--accent-color);
+  font-weight: bold;
+  background: rgba(56, 189, 248, 0.05); /* Un fundal albăstrui subtil */
+}
+
+.operator:hover {
+  background: rgba(56, 189, 248, 0.15);
+}
+
+/* Butonul de Egal (=) care ocupă spațiul a două butoane */
+.equal {
+  background: var(--accent-color);
+  color: #0f172a;
+  font-weight: bold;
+  width: 130px; /* Întinde butonul peste ultimele două coloane */
+}
+
+.equal:hover {
+  background: #7dd3fc; /* O nuanță mai deschisă la hover */
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+/* Noua clasă pentru text lung sau erori */
+#calcDisplay.small-text {
+  font-size: 22px;
+  color: #f87171; 
+}
